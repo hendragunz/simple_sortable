@@ -13,15 +13,16 @@ gem 'sqlite3'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
-  gem 'therubyracer', :platforms => :ruby
-  gem "less-rails"
-  gem "twitter-bootstrap-rails"
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'haml-rails'
 gem 'jquery-rails'
+gem 'therubyracer', :platforms => :ruby
+gem "less-rails"
+gem "twitter-bootstrap-rails"
+
+
 gem 'acts_as_list'
 gem 'kaminari'
 gem "gritter", "1.0.2"
