@@ -28,25 +28,26 @@
           %a.brand(href="#") Sortable
           .container.nav-collapse
             %ul.nav
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
+              %li= link_to "Home", root_path
+              %li= link_to "ToDo List", todo_lists_path
 
     .container
 
       .row
-        .span9
+        .span12
           = bootstrap_flash
           = yield
-        .span3
-          .well.sidebar-nav
-            %h3 Sidebar
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
-    
+        / .span3
+        /   .well.sidebar-nav
+        /     %h3 Sidebar
+        /     %ul.nav.nav-list
+        /       %li.nav-header Sidebar
+        /       %li= link_to "Link 1", "/path1"
+        /       %li= link_to "Link 2", "/path2"
+        /       %li= link_to "Link 3", "/path3"
+
+      %br
+      %hr
       %footer
         %p &copy; Company 2012
     /
@@ -54,3 +55,5 @@
       \==================================================
     / Placed at the end of the document so the pages load faster
     = javascript_include_tag "application"
+    = yield :javascript
+    = gflash

@@ -1,0 +1,25 @@
+.row
+  .span6
+    = link_to "New Todo", new_todo_list_path, class: 'btn'
+
+%br
+
+.row
+  .span6
+    %table{class: 'table table-bordered'}
+      %thead
+        %tr
+          %th #
+          %th Name
+          %th Description
+          / %th Action
+
+      %tbody
+        - @todo_lists.each_with_index do |todo, idx|
+          %tr
+            %td= idx+1
+            %td= link_to todo.name, todo_list_path(todo)
+            %td= todo.description
+            / %td
+            /   = link_to 'Action', '#', class: 'btn'
+            /   = link_to 'Action', '#', class: 'btn btn-danger'

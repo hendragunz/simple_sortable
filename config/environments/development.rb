@@ -34,4 +34,7 @@ Sortable::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # quit render assets
+  config.quiet_assets = true
 end

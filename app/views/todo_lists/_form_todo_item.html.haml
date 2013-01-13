@@ -1,0 +1,27 @@
+- unique_id = defined?(idx) ? idx : "UNIQUE_ID"
+- todo_item = defined?(todo_item) ? todo_item : TodoItem.new
+
+= "---------------------------------------------------------------------------------------------"
+- if defined?(idx)
+  = form.fields_for :todo_items, todo_item do |todo_form|
+    .control-group
+      = todo_form.label :task_name, 'Task Name', class: 'control-label'
+      .controls
+        = todo_form.text_field :task_name, placeholder: 'task name'
+
+    .control-group
+      = todo_form.label :detail, 'Detail', class: 'control-label'
+      .controls
+        = todo_form.text_field :detail, placeholder: 'detail'
+
+- else
+  = form.fields_for "todo_items_attributes[#{unique_id}]", todo_item do |todo_form|
+    .control-group
+      = todo_form.label :task_name, 'Task Name', class: 'control-label'
+      .controls
+        = todo_form.text_field :task_name, placeholder: 'task name'
+
+    .control-group
+      = todo_form.label :detail, 'Detail', class: 'control-label'
+      .controls
+        = todo_form.text_field :detail, placeholder: 'detail'

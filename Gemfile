@@ -15,6 +15,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   gem 'therubyracer', :platforms => :ruby
+  gem "less-rails"
   gem "twitter-bootstrap-rails"
   gem 'uglifier', '>= 1.0.3'
 end
@@ -22,6 +23,15 @@ end
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'acts_as_list'
+gem 'kaminari'
+gem "gritter", "1.0.2"
+
+group :development, :test do
+  gem 'thin'
+  gem 'quiet_assets'
+  gem 'awesome_print'
+  gem 'debugger'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
