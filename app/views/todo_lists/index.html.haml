@@ -4,22 +4,46 @@
 
 %br
 
-.row
-  .span6
-    %table{class: 'table table-bordered'}
-      %thead
-        %tr
-          %th #
-          %th Name
-          %th Description
-          / %th Action
 
-      %tbody
-        - @todo_lists.each_with_index do |todo, idx|
+.row
+  - @todo_lists.each_with_index do |todo, idx|
+    .span4
+      %h3= todo.name
+      %p= todo.description
+      %table{class: 'table table-bordered'}
+        %thead
           %tr
-            %td= idx+1
-            %td= link_to todo.name, todo_list_path(todo)
-            %td= todo.description
-            / %td
-            /   = link_to 'Action', '#', class: 'btn'
-            /   = link_to 'Action', '#', class: 'btn btn-danger'
+            %th #
+            %th Task Name
+            %th Detail
+            / %th Action
+
+        %tbody{:id => 'todo-items-container', 'data-todo-list' => todo.id, class: 'sortable-todo-list'}
+          - todo.todo_items.each_with_index do |todo_item, idx|
+            %tr{'data-todo-item' => todo_item.id, 'data-todo-list' => todo.id}
+              %td
+                %span{class: 'order-number'}= todo_item.position
+              %td= todo_item.task_name
+              %td= todo_item.detail
+
+
+= call_js_init('Todo.initAllTodoListPage();')
+/ .row
+/   .span6
+/     %table{class: 'table table-bordered'}
+/       %thead
+/         %tr
+/           %th #
+/           %th Name
+/           %th Description
+/           / %th Action
+
+/       %tbody
+/         - @todo_lists.each_with_index do |todo, idx|
+/           %tr
+/             %td= idx+1
+/             %td= link_to todo.name, todo_list_path(todo)
+/             %td= todo.description
+/             / %td
+/             /   = link_to 'Action', '#', class: 'btn'
+/             /   = link_to 'Action', '#', class: 'btn btn-danger'

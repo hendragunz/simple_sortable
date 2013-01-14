@@ -5,6 +5,10 @@ Sortable::Application.routes.draw do
     member do
       post 'update_row'
     end
+
+    collection do
+      post 'move_row'
+    end
   end
 
   # root path application

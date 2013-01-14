@@ -1,7 +1,7 @@
 class TodoListsController < ApplicationController
   # GET - todo_lists_url
   def index
-    @todo_lists = TodoList.all
+    @todo_lists = TodoList.includes(:todo_items)
   end
 
   # GET - todo_list_url(id)
@@ -45,6 +45,23 @@ class TodoListsController < ApplicationController
   def update_row
     @todo_item = todo.todo_items.find params[:todo_item_id]
     @success = @todo_item.set_list_position(params[:row].to_i + 1)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
+  def move_row
+    @from_todo  = TodoList.find params[:from_todo_list_id]
+    @todo_item  = @from_todo.todo_items.find params[:todo_item_id]
+    @to_todo    = TodoList.find params[:target_todo_list_id]
+
+    @todo_item.remove_from_list
+    @todo_item.todo_list = @to_todo
+    @todo_item.save
+    @todo_item.insert_at(params[:row].to_i + 1)
+
+    @success = @todo_item.save
     respond_to do |format|
       format.js
     end
