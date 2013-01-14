@@ -48,6 +48,10 @@ class TodoListsController < ApplicationController
     respond_to do |format|
       format.js
     end
+  rescue
+    respond_to do |format|
+      format.js
+    end
   end
 
 
