@@ -1,11 +1,31 @@
-.page-header
-  %h4= "Detail of #{@todo.name}:"
+<div class="page-header">
+  <h4><%= "Detail of #{@todo.name}:" %></h4>
+</div>
 
-.row
-  .span6
-    = link_to "New Todo Item", new_todo_list_path, class: 'btn'
 
-%br
+<div class="row">
+  <div class="span6">
+    <%= link_to "New Todo Item", new_todo_list_path, class: 'btn' %>
+  </div>
+</div>
+
+<br />
+
+
+<div class="row">
+  <div class="span6">
+    <ul id='todo-items-container' data-todo-list = "<%= @todo.id %>">
+      <% @todo_items.each_with_index do |todo_item, idx| %>
+        <li data-todo-item="<%= todo_item.id %>">
+          <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+          <span class="order-number"><%= todo_item.position %></span>
+          <%= todo_item.task_name %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
 
 .row
   .span6
@@ -29,4 +49,4 @@
             /   = link_to 'Action', '#', class: 'btn btn-danger'
 
 
-= call_js_init("Todo.initShowTodoPage();")
+<%= call_js_init("Todo.initShowTodoPage();") %>

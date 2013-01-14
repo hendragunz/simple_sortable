@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="span6">
+    <%= link_to "New Todo", new_todo_list_path, class: 'btn' %>
+  </div>
+</div>
+
+<br />
+
+
+<% @todo_lists.each_with_index do |todo, idx| %>
+  <div class="row">
+    <div class="span6">
+      <h3><%= todo.name  %></h3>
+      <p><%= todo.description %></p>
+      <ul class="sortable-todo-list" data-todo-list="<%= todo.id %>">
+        <% todo.todo_items.each do |todo_item| %>
+          <li data-todo-item="<%= todo_item.id %>" data-todo-list="<%= todo.id %>" class="ui-state-default">
+            <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+            <span class="order-number"><%= todo_item.position %></span>
+            <%= todo_item.task_name %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<!-- call initialize javascript -->
+<%= call_js_init('Todo.initAllTodoListPage();') %>
